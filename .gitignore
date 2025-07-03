@@ -31,6 +31,7 @@ terraform/.terraform.tfstate.lock.info
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+terraform/plan
 
 # Ignore CLI configuration files
 terraform/.terraformrc
