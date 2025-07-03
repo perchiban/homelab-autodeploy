@@ -5,9 +5,10 @@ variable vm_configs {
 	cores = number
 	memory = number
 	vm_state = string
+	v4address = string
     }))
     default = {
-	"K8s-01" = { vm_id = 301, name = "K8s-01", cores = 1, memory = 2048, vm_state = "stopped"}
+	"K8s-01" = { vm_id = 301, name = "K8s-01", cores = 1, memory = 2048, vm_state = "stopped", v4address = "10.10.0.242"}
 	# "K8s-02" = { vm_id = 302, name = "K8s-02", cores = 2, memory = 1024, vm_state = "stopped"}
 	# "K8s-03" = { vm_id = 303, name = "K8s-03", cores = 3, memory = 2048, vm_state = "stopped"}
 	# "K8s-04" = { vm_id = 304, name = "K8s-04", cores = 4, memory = 1024, vm_state = "stopped"}
@@ -66,5 +67,7 @@ resource "proxmox_vm_qemu" "pxe-test" {
         bridge    = "vmbr0"
         model     = "virtio"
     }
-    ipconfig0 = "ip=10.10.0.241/24,gw=10.10.0.1"
+    ipconfig0     = "ip=${each.value.v4address}/24,gw=10.10.0.1"
+    ciuser        = "debian"
+    cipassword    = "tenretni"
 }
