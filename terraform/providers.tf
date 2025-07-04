@@ -10,6 +10,6 @@ terraform {
 provider "proxmox" {
     pm_tls_insecure = true
     pm_api_url = "https://10.10.0.252:8006/api2/json"
-    pm_api_token_secret = "55b32ef1-9e46-4ace-879f-b012ec548230"
+    pm_api_token_secret = var.node_secret_token
     pm_api_token_id = "terraform@pve!terraform-token"
 }
